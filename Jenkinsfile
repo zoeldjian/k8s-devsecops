@@ -15,7 +15,7 @@ node {
               docker.build("'''+ serviceContainerRepo +'''").push("${gitCommit}-${BUILD_ID}")
             }
         }
-        
+        //Scan test
         stage ('Vulnerability Scan - Docker') {
             sh "bash trivy-docker-image-scan.sh"
         }
