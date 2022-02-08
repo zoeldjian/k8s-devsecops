@@ -9,18 +9,18 @@ pipeline {
       }
     }
     
-//     stage('SonarQube - SAST') {
-//       steps {
-//         withSonarQubeEnv('SonarQube') {
-//         sh "mvn sonar:sonar -Dsonar.projectKey=testing-application -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=b90cdb6824bbd0ae041826b9cc6d330ae57c78be" 
-//         }
-//        timeout(time: 2, unit: 'MINUTES') {
-//          script {
-//            waitForQualityGate abortPipeline: true
-//         }
-//       }  
-//     }
-//   }
+    stage('SonarQube - SAST') {
+      steps {
+        withSonarQubeEnv('SonarQube') {
+        sh "sonar-scanner -Dsonar.projectKey=golang-sirka -Dsonar.sources=. -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=39d66a37284974d1fee8d8f3f43d8b59dec00bb4" 
+        }
+       timeout(time: 2, unit: 'MINUTES') {
+         script {
+           waitForQualityGate abortPipeline: true
+        }
+      }  
+    }
+  }
 
 //     stage('Docker Build and Push') {
 //       steps {
