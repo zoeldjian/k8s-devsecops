@@ -1,0 +1,73 @@
+{
+  "name": "sirka-landing",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check-types": "tsc --pretty --noEmit",
+    "format": "prettier --w \"./**/*.{ts,tsx}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.4",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@types/react-slick": "^0.23.8",
+    "@types/styled-components": "^5.1.21",
+    "axios": "^0.24.0",
+    "commitizen": "^4.2.4",
+    "framer-motion": "^5",
+    "next": "12.0.8",
+    "next-persist": "^1.2.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.20.4",
+    "react-query": "^3.34.8",
+    "react-redux": "^7.2.6",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.9",
+    "@types/react": "17.0.38",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "babel-plugin-macros": "^3.1.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.7.0",
+    "eslint-config-next": "12.0.8",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.0",
+    "react-icons": "^4.3.1",
+    "tailwindcss": "^3.0.15",
+    "twin.macro": "^2.8.2",
+    "typescript": "4.5.4"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --quiet --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
