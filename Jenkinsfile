@@ -3,7 +3,8 @@ node {
             checkout([$class: "GitSCM",
             branches: [[name: "${params.Branch}"]],
             extensions: [],
-            userRemoteConfigs: [[url: "https://github.com/zoeldjian/'''+ serviceRepo +'''", credentialsId: "zoeldjian-github-userpass"]]])
+            /*userRemoteConfigs: [[url: "https://github.com/zoeldjian/'''+ serviceRepo +'''", credentialsId: "zoeldjian-github-userpass"]]]) */
+            userRemoteConfigs: [[url: 'https://github.com/zoeldjian/k8s-devsecops', credentialsId: 'zoeldjian-github-userpass']]])
             notifyBuild('STARTED')
         }
 
