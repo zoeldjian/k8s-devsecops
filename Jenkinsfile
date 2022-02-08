@@ -1,6 +1,4 @@
 node {
-    def gitCommit
-    try {
         stage ('Prepare code') {
             checkout([$class: "GitSCM",
             branches: [[name: "${params.Branch}"]],
@@ -27,12 +25,4 @@ node {
             sh "kubectl get ns"
             }
         }
-    } catch (e) {
-        // If there was an exception thrown, the build failed
-        currentBuild.result = "FAILED"
-        throw e
-    } finally {
-        // Success or failure, always send notifications
-        notifyBuild(currentBuild.result)
-    }
-}
+} 
