@@ -22,14 +22,14 @@ pipeline {
 //     }
 //   }
 
-    stage('Docker Build and Push') {
-      steps {
-          gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
-          docker.withRegistry("https://218649523932.dkr.ecr.ap-southeast-1.amazonaws.com", "ecr:ap-southeast-1:jenkins-aws-creds") {
-            docker.build("'''+ serviceContainerRepo +'''").push("${gitCommit}-${BUILD_ID}")
-      }
-    }
-   }
+//     stage('Docker Build and Push') {
+//       steps {
+//           gitCommit = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
+//           docker.withRegistry("https://218649523932.dkr.ecr.ap-southeast-1.amazonaws.com", "ecr:ap-southeast-1:jenkins-aws-creds") {
+//             docker.build("'''+ serviceContainerRepo +'''").push("${gitCommit}-${BUILD_ID}")
+//       }
+//     }
+//    }
 
     stage ('Vulnerability Scan - Docker') {
       steps {
