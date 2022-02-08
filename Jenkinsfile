@@ -5,22 +5,22 @@ pipeline {
 
     stage('Git Checkout') {
       steps {
-        git branch: 'main', url: 'https://<token>@github.com/username/repoName.git'
+        git branch: 'main', url: 'https://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@github.com/zoeldjian/k8s-devsecops.git'
       }
     }
     
-    stage('SonarQube - SAST') {
-      steps {
-        withSonarQubeEnv('SonarQube') {
-        sh "mvn sonar:sonar -Dsonar.projectKey=testing-application -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=b90cdb6824bbd0ae041826b9cc6d330ae57c78be" 
-        }
-       timeout(time: 2, unit: 'MINUTES') {
-         script {
-           waitForQualityGate abortPipeline: true
-        }
-      }  
-    }
-  }
+//     stage('SonarQube - SAST') {
+//       steps {
+//         withSonarQubeEnv('SonarQube') {
+//         sh "mvn sonar:sonar -Dsonar.projectKey=testing-application -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=b90cdb6824bbd0ae041826b9cc6d330ae57c78be" 
+//         }
+//        timeout(time: 2, unit: 'MINUTES') {
+//          script {
+//            waitForQualityGate abortPipeline: true
+//         }
+//       }  
+//     }
+//   }
 
     stage('Docker Build and Push') {
       steps {
@@ -30,7 +30,7 @@ pipeline {
       }
     }
    }
-   
+
     stage ('Vulnerability Scan - Docker') {
       steps {
           sh "bash trivy-docker-image-scan.sh"
