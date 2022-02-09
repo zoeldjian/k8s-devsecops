@@ -12,7 +12,7 @@ pipeline {
     stage('SonarQube - SAST') {
       steps {
         withSonarQubeEnv('SonarQube') {
-        sh "sonar-scanner -Dsonar.projectKey=golang-sirka -Dsonar.sources=. -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=39d66a37284974d1fee8d8f3f43d8b59dec00bb4" 
+        sh "mvn sonar-scanner -Dsonar.projectKey=golang-sirka -Dsonar.sources=. -Dsonar.host.url=http://18.141.173.8:9000 -Dsonar.login=39d66a37284974d1fee8d8f3f43d8b59dec00bb4" 
         }
        timeout(time: 2, unit: 'MINUTES') {
          script {
