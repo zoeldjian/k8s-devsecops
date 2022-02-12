@@ -5,7 +5,7 @@ node {
             checkout([$class: "GitSCM",
             branches: [[name: "${params.Branch}"]],
             extensions: [],
-            userRemoteConfigs: [[url: "https://github.com/zoeldjian/k8s-devsecops", credentialsId: "fitpal-dcbi-userpass"]]])
+            userRemoteConfigs: [[url: "https://github.com/zoeldjian/k8s-devsecops", credentialsId: "zoeldjian-userpass"]]])
             notifyBuild('STARTED')
         }
 
