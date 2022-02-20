@@ -1,3 +1,43 @@
+import groovy.json.JsonSlurper
+
+def inputFile = readFileFromWorkspace("jenkins/development/jobs/k8slist.json")
+def inputJSON = new JsonSlurper().parseText(inputFile)
+
+for(i=0; i<inputJSON.services.size(); i++ ) {
+
+    serviceName = inputJSON.services[i].name
+    serviceRepo = inputJSON.services[i].repo
+    serviceContainerRepo = inputJSON.services[i].container_repo
+    pushTrigger = inputJSON.services[i].push_trigger
+
+    pipelineJob(serviceName) {
+        configure {
+            (it / 'concurrentBuild').setValue('false')
+        }
+        if (pushTrigger) {
+            triggers {
+                githubPush()
+            }
+        }
+        parameters {
+            listGitBranches {
+                name("Branch")
+                remoteURL("https://github.com/fitpal-dcbi/" + serviceRepo)
+                credentialsId("fitpal-dcbi-userpass")
+                defaultValue("development")
+                sortMode("ASCENDING_SMART")
+                selectedValue('DEFAULT')
+                quickFilterEnabled(true)
+                type("PT_BRANCH")
+                tagFilter("*")
+                branchFilter(".*")
+            } 
+        }
+        definition {
+            cps {
+                sandbox()
+                script('''
+
 node {
     def gitCommit
     try {
