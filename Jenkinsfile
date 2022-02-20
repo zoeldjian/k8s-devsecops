@@ -133,4 +133,8 @@ node {
 //         slackSend (channel: 'builds', color: colorCode, message: summary)
 //     }
 // }
-
+''')
+            }
+        }
+    }
+}
